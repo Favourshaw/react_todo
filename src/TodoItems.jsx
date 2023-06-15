@@ -1,18 +1,23 @@
-export function TodoItems({ completed, id, title, toggleTodo, deleteTodo }){
-return(
-    
-        <li>
-          <label>
+export function TodoItems({ completed, id, title, toggleTodo, deleteTodo }) {
+  return (
+    <>
+      <div className="card__content">
+        <div className="radio-input">
+          <label className="label">
             <input
               type="checkbox"
               onChange={(e) => toggleTodo(id, e.target.checked)}
               checked={completed}
             />
-            {title}
+            <span className="check"></span>
           </label>
-          <button onClick={() => deleteTodo(id)} className="del">
-            Delete
-          </button>
-        </li>
-     
-)}
+        </div>
+        <p className="listTitle">{title}</p>
+        <button onClick={() => deleteTodo(id)} className="btn">
+          <span>Delete</span>
+        </button>
+      </div>
+      <hr />
+    </>
+  );
+}

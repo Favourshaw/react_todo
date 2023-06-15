@@ -5,16 +5,15 @@ import TodoListB from "./TodoListB";
 
 export default function App() {
   const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS")
-    if(localValue == null) return []
+    const localValue = localStorage.getItem("ITEMS");
+    if (localValue == null) return [];
 
-    
-    return JSON.parse(localValue)
+    return JSON.parse(localValue);
   });
 
   useEffect(() => {
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
-  }, [todos])
+    localStorage.setItem("ITEMS", JSON.stringify(todos));
+  }, [todos]);
   function addTodo(title) {
     setTodos((currentTodos) => {
       return [
@@ -42,10 +41,16 @@ export default function App() {
   }
 
   return (
-    <>
-      <TodoForm onSubmit={addTodo} />
-      <h1 className="header"> Todo List</h1>
-      <TodoListB todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
-    </>
+    <div className="appMain">
+      <div className="card-alt">
+        <TodoForm onSubmit={addTodo} />
+        <h1 className="header"> Todo List</h1>
+        <TodoListB
+          todos={todos}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
+      </div>
+    </div>
   );
 }
